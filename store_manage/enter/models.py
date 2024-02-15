@@ -1,6 +1,7 @@
 from django.db import models
-from django.db.models.signals import pre_save
+
 from django.dispatch import receiver
+from django.db.models.signals import pre_save
 
 # Create your models here.
 
@@ -9,7 +10,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=100, unique=True, blank=True)
     description = models.TextField(blank=True, verbose_name="Description")
     number = models.IntegerField(blank=True, default=0, verbose_name="Quantity_of_equipment")
-    image = models.ImageField(upload_to='enter_image/', null=True, blank=True)
+    image = models.ImageField(upload_to='enter_category/', blank=True, null=True)
 
     class Meta:
         verbose_name = "Category_Equipment"
@@ -29,6 +30,7 @@ class Equipment(models.Model):
     classed = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Category_of_equipement")
     state = models.BooleanField(default=True)
     number = models.IntegerField()
+    image = models.ImageField(upload_to='enter_equipment/', blank=True, null=True)
 
     class Meta:
         verbose_name = "Equipment_stored"

@@ -1,0 +1,86 @@
+{% extends 'storage/layouts/base.html' %}
+
+{% block title %} Equipments list {% endblock %}
+ 
+{% block body %}
+        <div class="container"> 
+            <br>
+            <nav class="navbar navbar-expand-lg bg-bo-tertiary">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-outline-primary">
+                    <!--<a class="nav-link" href="{% url 'storage:new_equipment' %}"> hardware input</a>-->
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <!--<a class="nav-link" href="{% url 'storage:all_elements' %}"> stock</a>-->
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <!--<a class="nav-link" href="{% url 'storage:state' %}"> dashboard</a>-->
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <!--<a class="nav-link" href="{% url 'storage:get_equipment' %}"> store request</a>-->
+                </button>
+            </div>   
+            </nav>
+            <h2 class="mt-3"> {{ message }} </h2>
+            <div class="col-md-4">
+                <!--<form action="{% url 'storage:search_equipment' %}" method="get" class="d-flex ml-3">
+                    <input type="search" name="search" class="form-control me-2" placeholder="search">
+                    <button class="btn btn-outline-primary ml-2" type="submit">Search</button>
+                </form>-->
+                <br>
+            </div>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>N</th>
+                        <th>serial_number</th>
+                        <th>description</th>
+                        <th>quantity</th>
+                        <th>date</th>
+                        <th>statut</th>
+                        <th colspan = 3>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for equipment in equipments %}
+                    <tr>
+                        <td>{{ equipment.number }}</td>
+                        <td>{{ equipment.serial_number }}</td>
+                        <!--<td><a class="nav-link" href="{% url 'storage:details_equipment' equipment.number %}">{{ equipment.description }}</a></td>-->
+                        <td>{{ equipment.quantity }}</td>
+                        <td>{{ equipment.created_on }}</td>
+                        <!--<td><a class="nav-link" href="{% url 'storage:details_equipment' equipment.number %}">📄</a></td>-->
+                        <!--<td><a class="nav-link" href="{% url 'storage:update_equipment' equipment.number %}">✏️</a></td>-->
+                        <!--<td><a class="nav-link" href="{% url 'storage:delete_equipment' equipment.number %}">🗑️</a></td>-->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}
+
+{% block footer %}
+
+    <ul class="pagination justify-content-center">
+        {% if equipments.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ equipments.previous_page_number }}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+        <li class="page-item">
+            <p class="page-link text-muted">
+                Page {{ equipments.number }} of {{ equipments.paginator.num_pages }}.
+            </p>
+        </li>
+        {% if equipments.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ equipments.next_page_number }}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+
+{% endblock %}
