@@ -1,6 +1,6 @@
 {% extends 'storage/layouts/base.html' %}
 
-{% block title %} details equipment {% endblock %}
+{% block title %} details equipment out {% endblock %}
  
 {% block body %}
         <div class="container">
@@ -16,8 +16,7 @@
                   <p class="card-text"> serial number : {{ details.serial_number }}</p>
                   <p class="card-text"> quantity : {{ details.quantity }}</p>
                   <p class="card-text"> date delivery : {{ details.created_on }}</p>
-                  <p class="card-text"> supplier : {{ details.supplier }}</p>
-                  <p class="card-text"><small class="text-body-secondary"> cost : {{ details.cost }} XAF</small></p>
+                  <p class="card-text"> projet : {{ details.projet }}</p>
                 </div>
             </div>            
         </div>

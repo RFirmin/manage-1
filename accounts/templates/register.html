@@ -1,0 +1,54 @@
+{% extends 'accounts/layouts/base.html' %}
+
+{% block title %} Signup {% endblock %}
+ 
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h4 class="text-center mb-3 my-3">Signup</h4>
+                <form action="" method="post">
+                    {% if form.subject.errors %}
+                        {% for error in form.subject.errors %}
+                            <p class="text-danger"><strong>{{ error }}</strong></p>
+                        {% endfor %}
+                    {% endif %}
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            <p class="mx-auto">{{ field }}</p>
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <p class="text-danger"><strong>{{ error }}</strong></p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}<br>
+                    {% if profile.subject.errors %}
+                        {% for error in profile.subject.errors %}
+                            <p class="text-danger"><strong>{{ error }}</strong></p>
+                        {% endfor %}
+                    {% endif %}
+                    {% csrf_token %}
+                    {% for field in profile %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <p class="text-danger"><strong>{{ error }}</strong></p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}<br>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Signup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

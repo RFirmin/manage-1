@@ -1,6 +1,6 @@
 {% extends 'storage/layouts/base.html' %}
 
-{% block title %} Equipments list {% endblock %}
+{% block title %} Equipments Out list {% endblock %}
  
 {% block body %}
         <div class="container"> 
@@ -29,7 +29,6 @@
                         <th>serial number</th>
                         <th>description</th>
                         <th>date</th>
-                        <th>statut</th>
                         <th>action</th>
                     </tr>
                 </thead>
@@ -37,11 +36,10 @@
                     {% for equipment in equipments %}
                     <tr>
                         <td>{{ equipment.id }}</td>
-                        <td><a class="nav-link" href="{% url 'enter:details_equipment' equipment.id %}">{{ equipment.serialNumber }}</a></td>
+                        <td><a class="nav-link" href="{% url 'enter:details_equipmentOut' equipment.id %}">{{ equipment.serialNumber }}</a></td>
                         <td>{{ equipment.description }}</td>
-                        <td>{{ equipment.created_on|date:"D F Y" }}</td>
-                        <td>{{ equipment.state }}</td>
-                        <td><a class="nav-link" href="{% url 'enter:details_equipment' equipment.id %}">📄</a></td>
+                        <td>{{ equipment.created_on }}</td>
+                        <td><a class="nav-link" href="{% url 'enter:details_equipmentOut' equipment.id %}">📄</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

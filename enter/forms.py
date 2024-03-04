@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Category, Equipment
+from .models import Category, Equipment, Equipment_Out
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -11,29 +11,47 @@ class CategoryForm(forms.ModelForm):
     title = forms.ChoiceField(choices = choices_c, widget=forms.Select(attrs={
         'class': 'form-control',
     }))
-    description = forms.CharField(widget=forms.Textarea)
-    image = forms.ImageField(widget=forms.ClearableFileInput)
+    description = forms.CharField(required=False, widget=forms.Textarea)
+    image = forms.ImageField(required=False, widget=forms.ClearableFileInput)
 
 
 class EquipmentForm(forms.ModelForm):
     class Meta: 
         model = Equipment
-        fields = ('serial_number', 'description', 'procurement', 'cost', 'created_on', 'classed')
+        fields = ('serialNumber', 'description', 'supplier', 'cost', 'classed',)
 
-    serial_number = forms.CharField(widget=forms.TextInput(attrs={
+    serialNumber = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
     }))
     description = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
     })) 
-    procurement = forms.CharField(widget=forms.TextInput(attrs={
+    supplier = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
     }))
     cost = forms.IntegerField(widget=forms.NumberInput(attrs={
         'class': 'form-control',
     }))
-    created_on = forms.SelectDateWidget(disabled=True)
+    classed = forms.ModelChoiceField(queryset=Category.objects.all(), label ="Category", widget=forms.Select)
+
+    labels = {
+        "classed": "Category",
+    }
+
+
+class EquipmentOutForm(forms.ModelForm):
+    class Meta: 
+        model = Equipment_Out
+        fields = ('serialNumber', 'description', 'projet', 'classed',)
+
     classed = forms.ModelChoiceField(queryset=Category.objects.all(), widget=forms.Select)
+    serialNumber = forms.ModelChoiceField(queryset=Equipment.objects.all(), widget=forms.Select)
+    description = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+    })) 
+    projet = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+    }))
 
     labels = {
         "classed": "Category",
