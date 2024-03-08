@@ -165,12 +165,13 @@ def add_equipmentOut(request):
     return render(request, 'add_equipmentOut.html', context)
 
 
+
 # view to json
 
 def export_data_as_json(request):
     data = list(Equipment.objects.values())
     return JsonResponse(data, safe=False)
-
+ 
 def export_data_as_json_by_id(request, id):
     data = Equipment.objects.values('serialNumber', 'description', 'procurement', 'cost', 'created_on', 'state',).get(id=id)
     return JsonResponse(data, safe=False)
