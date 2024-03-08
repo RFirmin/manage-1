@@ -1,0 +1,91 @@
+{% extends 'storage/layouts/base.html' %}
+
+{% block title %} History {% endblock %}
+ 
+{% block body %}
+    <div class="container">    
+        <br>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Mon site</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'enter:add_category' %}">New Category</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Storage
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'enter:add_equipment' %}">Input</a></li>
+                        <li><a class="dropdown-item" href="#">Output</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Inventory
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'enter:screen_equipment' %}">Input</a></li>
+                        <li><a class="dropdown-item" href="#">Output</a></li>
+                      </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <br>
+
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>user</th>
+                    <th>action</th>
+                    <th>time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for equipment in equipments %}
+                <tr>
+                    <td>{{ equipment.user }}</td>
+                    <td>{{ equipment.action }}</td>
+                    <td>{{ equipment.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+<ul class="pagination justify-content-center">
+    {% if equipments.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ equipments.previous_page_number }}">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    {% endif %}
+    <li class="page-item">
+        <p class="page-link text-muted">
+            Page {{ equipments.number }} of {{ equipments.paginator.num_pages }}.
+        </p>
+    </li>
+    {% if equipments.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ equipments.next_page_number }}">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    {% endif %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'storage/layouts/base.html' %}
+
+{% block title %} details equipment out {% endblock %}
+ 
+{% block body %}
+        <div class="container">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                
+            </div><br>
+            <div class="card mb-3">
+                {% if details.image %}
+                <img src="{{ details.image.url }}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ details.description }}</h5>
+                  <p class="card-text"> serial number : {{ details.serial_number }}</p>
+                  <p class="card-text"> quantity : {{ details.quantity }}</p>
+                  <p class="card-text"> date delivery : {{ details.created_on }}</p>
+                  <p class="card-text"> projet : {{ details.projet }}</p>
+                </div>
+            </div>            
+        </div>
+
+{% endblock %}
+
