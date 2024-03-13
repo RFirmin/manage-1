@@ -1,2 +1,6 @@
 #Ignore the stored environment variables file
 .env
+
+
+#Ignore the virtual environment created for test
+/venv
