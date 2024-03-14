@@ -28,9 +28,9 @@ load_dotenv
 SECRET_KEY = 'PGSECRETKEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'store_manage.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('PGDATABASE'), #config('DATABASE_NAME'),
         'USER': os.getenv('PGUSER'), #config('DATABASE_USER'),
         'PASSWORD': os.getenv('PGPASSWORD'), #config('DATABASE_PASSWORD'),
