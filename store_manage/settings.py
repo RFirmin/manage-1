@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,8 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+# Load environment variables from .env file
+load_dotenv()
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+2pjr-&w1z@y=&&$=^y9v77r90%!=rvpmo*e47&!q7)w7mptv_'
+SECRET_KEY = os.getenv('PGSECRETKEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,12 +84,12 @@ WSGI_APPLICATION = 'store_manage.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'storage', #config('DATABASE_NAME'),
-        'USER': 'postgres', #config('DATABASE_USER'),
-        'PASSWORD': 'storage', #config('DATABASE_PASSWORD'),
-        'HOST': 'localhost', #config('DATABASE_HOST'),
-        'PORT': '5432' #config('DATABASE_PORT'),
+        'ENGINE': os.getenv('PGENGINE'),
+        'NAME': os.getenv('PGDATABASE'), #config('DATABASE_NAME'),
+        'USER': os.getenv('PGUSER'), #config('DATABASE_USER'),
+        'PASSWORD': os.getenv('PGPASSWORD'), #config('DATABASE_PASSWORD'),
+        'HOST': os.getenv('PGHOST'), #config('DATABASE_HOST'),
+        'PORT': os.getenv('PGPORT') #config('DATABASE_PORT'),
     }
 }
 
