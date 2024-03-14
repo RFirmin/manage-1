@@ -22,6 +22,7 @@ urlpatterns = [
     path('export json number/<int:id>/', views.export_data_as_json_by_id, name='export_data_as_json_id'),
     path('export json text/', views.export_data_as_json_into_text, name='export_data_as_json_into_text'),
     
+    path('state/', views.state, name='graph_category'),
     #path('update element/<int:id>/', views.update_element, name='update_element'),
     #path('choice element/', views.choice_element, name='choice_element'),
     #path('update equipment/<int:id>/', views.update_equipment, name='update_equipment'), 
@@ -30,8 +31,6 @@ urlpatterns = [
     #path('load serie/', views.load_serie, name='load_serie'),
     #path('graphic/', views.graphic, name='graphic'),
     #path('routeur/', views.routeur, name='routeur'), 
-    #path('state/', views.state, name='state'),
-    #path('routeur/', views.routeur, name='routeur'), 
-    #path('new routeur/', views.new_routeur, name='new_routeur'),
+    
     #path('search equipment/', views.search_equipment, name='search_equipment'), 
 ]

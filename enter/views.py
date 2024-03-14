@@ -15,6 +15,7 @@ import json
 
 # View for the action to screen
 
+@login_required
 def screen_category(request):
     
     enter_category = Category.objects.all()
@@ -26,6 +27,7 @@ def screen_category(request):
     return render(request, "all_category.html", context)
 
 
+@login_required
 #@user_passes_test(lambda u: "master" in [group.name for group in u.groups.all()])
 def screen_equipment(request):
     
@@ -43,6 +45,7 @@ def screen_equipment(request):
     return render(request, "all_equipment.html", context)
 
 
+@login_required
 #@user_passes_test(lambda u: "master" in [group.name for group in u.groups.all()])
 def screen_equipmentOut(request):
     
@@ -60,6 +63,7 @@ def screen_equipmentOut(request):
     return render(request, "all_equipmentOut.html", context)
 
 
+@login_required
 def screen_history(request):
     
     enter_history = ActionHistory.objects.all()
@@ -74,6 +78,7 @@ def screen_history(request):
 
 # View for the action to details
 
+@login_required
 def details_equipment(request, id):
     
     #details = Equipment.objects.get(number=number)
@@ -85,6 +90,7 @@ def details_equipment(request, id):
     return render(request, 'details_equipment.html', context)
 
 
+@login_required
 def details_equipmentOut(request, id):
     
     #details = Equipment.objects.get(number=number)
@@ -99,7 +105,7 @@ def details_equipmentOut(request, id):
 
 # View for the action to add
 
-#@login_required
+@login_required
 def add_category(request):
         
     if request.method == 'POST':
@@ -121,7 +127,7 @@ def add_category(request):
     return render(request, 'add_category.html', context)
 
 
-#@login_required
+@login_required
 def add_equipment(request):
         
     if request.method == 'POST':
@@ -143,7 +149,7 @@ def add_equipment(request):
     return render(request, 'add_equipment.html', context)
 
 
-#@login_required
+@login_required
 def add_equipmentOut(request):
         
     if request.method == 'POST':
@@ -166,7 +172,7 @@ def add_equipmentOut(request):
 
 
 
-# view to json
+# view for json
 
 def export_data_as_json(request):
     data = list(Equipment.objects.values())
@@ -182,3 +188,17 @@ def export_data_as_json_into_text(request):
         json.dump(data, file)
     return JsonResponse({'message': 'Ok'})
 
+
+
+# view for graphic
+
+@login_required
+def state(request):
+    
+    graph_category = Category.objects.all()
+
+    context = {
+        'equipments' : graph_category,
+    }
+
+    return render(request, "graph_category.html", context)
