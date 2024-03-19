@@ -91,7 +91,7 @@ DATABASES = {
         'PORT': os.getenv('PGPORT'), #config('DATABASE_PORT'),
         'OPTIONS': {
             'sslmode': 'require',
-        })
+        }
     }
 }
 
