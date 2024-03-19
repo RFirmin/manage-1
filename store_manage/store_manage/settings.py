@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'store_manage.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-#Managed to create env variables for the database connection in Azure
+#Managed to create env variables for the database connection in Azure :)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
