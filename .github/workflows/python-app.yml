@@ -34,8 +34,9 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run entrypoint script
       run: |
-        chmod +x entrypoint.sh
-        ./entrypoint.sh
+        cd manage
+        chmod +x ../entrypoint.sh
+          ../entrypoint.sh
       env:
         l: gunicorn
     - name: Deploy to Azure WebApp
