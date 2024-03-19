@@ -34,7 +34,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run entrypoint script
       run: |
-        cd manage
+        cd store_manage
         chmod +x ../entrypoint.sh
           ../entrypoint.sh
       env:
