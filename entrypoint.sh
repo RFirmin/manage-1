@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Had too much problems with the database
 set -e
 
 python manage.py makemigrations
