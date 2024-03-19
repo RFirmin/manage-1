@@ -4,3 +4,7 @@
 
 #Ignore the virtual environment created for test
 venv/
+
+
+#Ignore the workflows files
+.github/
