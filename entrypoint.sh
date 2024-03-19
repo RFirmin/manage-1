@@ -2,7 +2,6 @@
 #Had too much problems with the database
 set -e
 
-python manage.py makemigrations
 python manage.py migrate
 
 if [$l == 'gunicorn']; then
