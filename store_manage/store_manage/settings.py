@@ -88,7 +88,10 @@ DATABASES = {
         'USER': os.getenv('PGUSER'), #config('DATABASE_USER'),
         'PASSWORD': os.getenv('PGPASSWORD'), #config('DATABASE_PASSWORD'),
         'HOST': os.getenv('PGHOST'), #config('DATABASE_HOST'),
-        'PORT': os.getenv('PGPORT') #config('DATABASE_PORT'),
+        'PORT': os.getenv('PGPORT'), #config('DATABASE_PORT'),
+        'OPTIONS': {
+            'sslmode': 'require',
+        })
     }
 }
 
