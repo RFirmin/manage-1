@@ -32,17 +32,10 @@ jobs:
       run: |
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Run entrypoint script
-      run: |
-        cd store_manage
-        chmod +x ../entrypoint.sh
-          ../entrypoint.sh
-      env:
-        l: gunicorn
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'store-manage' # Replace with your app name
-        slot-name: 'production' # Replace with your slot name
-        publish-profile: ${{ secrets.STORE_MANAGE_PUBLISH_PROFILE }} # Configure this in your repo secrets
+        app-name: 'store-manage'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.STORE_MANAGE_PUBLISH_PROFILE }}
         package: '.'

@@ -8,3 +8,7 @@ venv/
 
 #Ignore the workflows files
 .github/
+
+
+#Ignore the settings for vscode
+.vscode/

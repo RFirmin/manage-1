@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('PGSECRETKEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://store-manage.azurewebsites.net/']
+ALLOWED_HOSTS = ['store-manage.azurewebsites.net']
 
 
 # Application definition
