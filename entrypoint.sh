@@ -4,4 +4,4 @@ set -e
 
 echo "Running migrations..."
 python store_manage/manage.py migrate
-python store_manage/manage.py runserver
+gunicorn store_manage.wsgi:application --bind 0.0.0.0:8000
