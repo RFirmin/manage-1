@@ -11,3 +11,4 @@ python-environ==0.4.54
 pytz==2024.1
 sqlparse==0.4.4
 tzdata==2023.4
+whitenoise==6.6.0
