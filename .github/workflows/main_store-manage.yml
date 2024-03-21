@@ -37,7 +37,7 @@ jobs:
           pip install -r requirements.txt 
               
       - name: Collect Static
-        run: python store_manage/manage.py collectstatics    
+        run: python store_manage/manage.py collectstatic    
         
       - name: Lint with flake8
         run: |
