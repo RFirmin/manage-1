@@ -24,6 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv()
 
+# SESSIONS AND CSRF
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", False)
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('PGSECRETKEY')
 
