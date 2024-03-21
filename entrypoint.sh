@@ -2,12 +2,12 @@
 
 set -e
 
-python store_manage/manage.py makemigrations
-python store_manage/manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 
 if [ "$l" = 'gunicorn' ]; then
 
-    exec gunicorn store_manage.store_manage.wsgi:application -b 0.0.0.0:$WEBSITES_PORT
+    exec gunicorn store_manage.wsgi:application -b 0.0.0.0:$WEBSITES_PORT
 
 else
 
