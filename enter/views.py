@@ -170,6 +170,28 @@ def add_equipmentOut(request):
     }
     return render(request, 'add_equipmentOut.html', context)
 
+"""
+@login_required
+def add_equipmentOut(request):
+        
+    if request.method == 'POST':
+        form = EquipmentOutForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            action = ActionHistory(user=request.user, action="output_equipment", timestamp=timezone.now())
+            action.save()
+            
+            return redirect('enter:screen_category')
+   
+    else:
+        form = EquipmentOutForm()
+        
+    context = {
+        'form': form,
+    }
+    return render(request, 'add_equipmentOut.html', context)
+"""
 
 
 # view for json
@@ -202,3 +224,47 @@ def state(request):
     }
 
     return render(request, "graph_category.html", context)
+
+
+
+#
+
+"""
+@login_required
+def get_equipment(request):
+    if request.method == "POST":
+        form = EquipmentOutForm(request.POST)
+        if form.is_valid():
+            form.save(using='database2')
+            print(form.classed)
+            print(form.serialNumber)
+
+            action = ActionHistory(user=request.user, action="output_equipment", timestamp=timezone.now())
+            action.save()
+            
+            return redirect('enter:screen_category')
+        
+        else:
+            print(form.errors)
+    else:
+        form = EquipmentOutForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'add_equipmentOut.html', context)
+
+
+@login_required
+def load_equipments(request):
+    classed_id = request.GET.get("classed")
+    print(classed_id)
+    equipments = Equipment_Out.objects.filter(classed_id=classed_id)
+    print(equipments)
+    
+    context = {
+        'equipments' : equipments
+    }
+    return render(request, 'serie_options.html', context)
+""" 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Equipment
+from .models import Equipment, Category
 
 @admin.register(Equipment)
 class EquipmentAdmin(admin.ModelAdmin):
@@ -12,3 +12,5 @@ class EquipmentAdmin(admin.ModelAdmin):
         "cost",
         "classed",
     )
+
+admin.site.register(Category)

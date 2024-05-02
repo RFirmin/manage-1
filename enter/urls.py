@@ -15,6 +15,9 @@ urlpatterns = [
     path('all equipments out/', views.screen_equipmentOut, name='screen_equipmentOut'),
     path('details equipment out/<int:id>/', views.details_equipmentOut, name='details_equipmentOut'),
     path('add equipment out/', views.add_equipmentOut, name='add_equipmentOut'),
+    
+    #path('', views.get_equipment, name='get_equipment'),
+    #path('load equipments/', views.load_equipment, name='load_equipment'),
 
     path('history/', views.screen_history, name='screen_history'),
     

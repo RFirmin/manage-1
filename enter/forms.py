@@ -2,6 +2,9 @@ from django import forms
 
 from .models import Category, Equipment, Equipment_Out
 
+from django.contrib.auth.forms import UserCreationForm
+
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
@@ -40,6 +43,24 @@ class EquipmentForm(forms.ModelForm):
 
 
 class EquipmentOutForm(forms.ModelForm):
+    class Meta:
+        model = Equipment_Out
+        fields = ('serialNumber', 'description', 'supplier', 'classed')
+
+    serialNumber = forms.ModelChoiceField(queryset=Equipment.objects.all(), widget=forms.Select)
+    description = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+    }))
+    supplier = forms.CharField(max_length=100)
+    classed = forms.ModelChoiceField(queryset=Category.objects.all(), label ="Category", widget=forms.Select)
+    
+
+
+
+#
+
+"""
+class EquipmentOutForm(forms.ModelForm):
     class Meta: 
         model = Equipment_Out
         fields = ('serialNumber', 'description', 'projet', 'classed',)
@@ -56,3 +77,26 @@ class EquipmentOutForm(forms.ModelForm):
     labels = {
         "classed": "Category",
     }
+"""
+
+"""
+class EquipmentOutForm(forms.Form):
+    classed = forms.ModelChoiceField(queryset=Category.objects.all(), label = "Category"
+        widget=forms.Select(attrs={"hx-get": "load_equipments/", "hx-target": "#id_serialNumber",
+        'class': 'form-control'
+    }))
+    serialNumber = forms.ModelChoiceField(queryset=Equipment_Out.objects.none())
+    description = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+    })) 
+    projet = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+    }))
+
+    def init(self, *args, **kwargs):
+        super().init(*args, **kwargs)
+
+        if "classed" in self.data:
+            classed_id = int(self.data.get("classed"))
+            self.fields["serialNumber"].queryset = Equipment_Out.objects.filter(classed_id=classed_id) 
+"""

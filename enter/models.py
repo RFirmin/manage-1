@@ -38,7 +38,7 @@ class Equipment(models.Model):
         verbose_name = "Equipment stored"
 
     def __str__(self):
-        return self.description
+        return self.serialNumber
     
 
 class Equipment_Out(models.Model):
@@ -55,9 +55,10 @@ class Equipment_Out(models.Model):
 
     class Meta:
         verbose_name = "Equipment_Out"
+        
 
     def __str__(self):
-        return self.description
+        return self.serialNumber
     
 @receiver(post_save, sender=Equipment)
 def update_Category_number(sender, instance, **kwargs):

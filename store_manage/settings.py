@@ -90,6 +90,15 @@ DATABASES = {
         'PASSWORD': os.getenv('PGPASSWORD'), #config('DATABASE_PASSWORD'),
         'HOST': os.getenv('PGHOST'), #config('DATABASE_HOST'),
         'PORT': os.getenv('PGPORT') #config('DATABASE_PORT'),
+    },
+
+    'base-other': {
+        'ENGINE': os.getenv('BASEENGINE'),
+        'NAME': os.getenv('BASEDATABASE'), #config('DATABASE_NAME'),
+        'USER': os.getenv('BASEUSER'), #config('DATABASE_USER'),
+        'PASSWORD': os.getenv('BASEPASSWORD'), #config('DATABASE_PASSWORD'),
+        'HOST': os.getenv('BASEHOST'), #config('DATABASE_HOST'),
+        'PORT': os.getenv('BASEPORT') #config('DATABASE_PORT'),
     }
 }
 
@@ -129,6 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "enter/static",
